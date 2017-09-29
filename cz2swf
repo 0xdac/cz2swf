@@ -1,0 +1,68 @@
+#! /bin/sh
+
+# Copyright (C) 2011 Joven Club de Computacion y Electronica V.C 
+# Written by Darien Alonso Camacho <darienad030111@vcl.jovenclub.cu>
+# Modified by Yosle 18/03/2011
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+
+# Some help text for make life easier :-)
+
+
+ showUsage () {
+ echo "cz2swf 0.0.2 by dac"
+ echo "This is a sort help for comandline options"
+ echo "Usage : cz2swf file.cz [file.swf] " 
+ echo "The '--help' , '-h' or '?' will print this help "
+
+
+} 
+ 
+# If no parameter given, show use. Thats more friendly for the user
+if [ -z "$1" ]; then
+   showUsage
+   exit
+fi
+if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$1" = "?" ] ; then
+   showUsage
+   exit
+fi
+
+
+# Check if param1  really exist , this its important because unzip
+# behavior generates very verbose output and will try find a .zip or 
+# .ZIP file whith the exact filename not exist. Im not do any extension 
+# check (.cz) but can be done later if its needed.
+# try "cz2swf sdfsadfwef ds.swf" and you see .
+
+if [ -f "$1" ]; then
+continue;
+else 
+echo "Error - Not found $1 file in current directory!"
+echo "Make sure $ really exist and you are executing cz2swf in the right folder"
+exit
+fi
+
+# If a output filename its not specified then use
+# the  source file with .swf extension
+
+DEFAULT_FILENAME=`basename $1 .cz`
+DEFAULT_FILENAME="${DEFAULT_FILENAME}.swf"
+filename=${2:-${DEFAULT_FILENAME}}
+
+unzip  $1
+cz2swf-bin document.xml $filename
+rm -f -r library assets document.xml 

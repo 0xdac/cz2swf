@@ -1,0 +1,2 @@
+g++ -o cz2swf-bin cz2swf.cpp TinyXml/tinystr.cpp TinyXml/tinyxml.cpp TinyXml/tinyxmlerror.cpp TinyXml/tinyxmlparser.cpp timeline/frame.cpp timeline/timelinelayer.cpp timeline/timeline.cpp -lming
+ 

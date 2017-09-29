@@ -1,0 +1,19 @@
+cz2swf 0.0.2
+
+DEPENDENCIES:
+- libming 0.4.3
+- TinyXML (included in the cz2swf distribution)
+
+INSTALL:
+- Extract the source file		
+- Change to the source dir 
+    example: 
+	   cd <username_dir>/cz2swf
+- Make the compile file executable
+		
+- Execute the compile file
+    example: 
+	   ./compile
+- Copy cz2swf and cz2swf-bin to /usr/bin/
+
+and ready
